@@ -1,0 +1,34 @@
+import { expect } from '@playwright/test';
+import{ Given, When, Then } from './fixtures';
+import { ScenarioData } from 'state/scenarioData';
+
+Given('User is on the home page', async ({homePage}) => {
+    await homePage.navigate();
+});
+
+When('user searches for {string}',async ({homePage},term:string)  => {
+  await homePage.searchVehicle(term);
+})
+
+When('user clears search term',async ({homePage})  => {
+    await homePage.resetSearch.click();
+});
+
+When('user selects a random vehicle from the results',async ({homePage})  => {
+    homePage.selectRandomResult();
+
+});
+
+
+Then(/^vehicle filter is( not)? displayed$/, async ({homePage}, expectedVisibility:string) => {
+    if( expectedVisibility === null){//Expect to be visible
+        expect( homePage.allVehiclesTabFilter ).toBeVisible();
+    }else{
+        expect( homePage.allVehiclesTabFilter ).toBeHidden();
+    }
+});
+
+Then('vehicle results should not be empty', async ({homePage}) => {
+    await expect.poll( async()=>{ return await homePage.vehicleResults.count() }).toBeGreaterThan(0);
+    //await expect( homePage.vehicleResults ).not.toBeEmpty();
+});
