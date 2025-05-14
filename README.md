@@ -5,4 +5,6 @@ Project showcasing the main features of playwright
 ```bash
 npm install .
 npx playwright install
+npx bddgen
+npx playwright test ./features/search.feature
 ```
