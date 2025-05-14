@@ -19,7 +19,7 @@ export default defineConfig({
     //geolocation: { latitude: 0, longitude: 0 },
     headless: false,
     ignoreHTTPSErrors: true,
-    video: 'off',
+    video: 'on-first-retry',
     screenshot: 'only-on-failure',
     trace: 'retain-on-failure',
     actionTimeout: 10000,
@@ -30,7 +30,6 @@ export default defineConfig({
   timeout: 60 * 1000,//seconds expressed in milliseconds
   expect: {timeout:9000},
   reporter: [
-    ['html',{open:'never'}],
     cucumberReporter('html', { outputFile: reportFileName })
   ],
   fullyParallel: false,
@@ -38,6 +37,17 @@ export default defineConfig({
     {
       name: 'chromium'
     },
-    //todo: add more projects
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+    {
+      name: 'Mobile Android',
+      use: { ...devices['Pixel 5'] },
+    },
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 15 Pro Max'] },
+    },
   ]
 });

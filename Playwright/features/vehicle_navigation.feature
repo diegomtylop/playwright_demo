@@ -1,7 +1,7 @@
 Feature: Vehicle details from Search
     As a customer
     I should be able to see the details of a searched vehicle
-
+@vehicle_navigation
 Scenario Outline: Navigate to vehicle details page
     Given User is on the home page
     When user searches for "<searchTerm>"

@@ -1,0 +1,10 @@
+{
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 14,
+    "cucumber.features": [
+        "Playwright/features/*.feature"
+    ],
+    "cucumber.glue": [
+        "Playwright/steps/*.ts"
+    ]
+}
