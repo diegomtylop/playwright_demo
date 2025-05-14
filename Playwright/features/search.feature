@@ -1,7 +1,7 @@
 Feature: Vehicle search
     As a user I should be able to search vehicles
 
-  @Precondition
+  @smoke @precondition
   Scenario: Search existing vehicle
     Given User is on the home page
     When user searches for "Tucson"
