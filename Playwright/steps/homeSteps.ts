@@ -1,22 +1,20 @@
 import { expect } from '@playwright/test';
 import{ Given, When, Then } from './fixtures';
-import { ScenarioData } from 'state/scenarioData';
 
 Given('User is on the home page', async ({homePage}) => {
     await homePage.navigate();
 });
 
-When('user searches for {string}',async ({homePage},term:string)  => {
+When('user searches for {string}',async ({homePage},term:string) => {
   await homePage.searchVehicle(term);
 })
 
-When('user clears search term',async ({homePage})  => {
+When('user clears search term',async ({homePage}) => {
     await homePage.resetSearch.click();
 });
 
-When('user selects a random vehicle from the results',async ({homePage})  => {
-    homePage.selectRandomResult();
-
+When('user selects a random vehicle from the results',async ({homePage}) => {
+    await homePage.selectRandomResult();
 });
 
 Then(/^vehicle filter is( not)? displayed$/, async ({homePage}, expectedVisibility:string) => {

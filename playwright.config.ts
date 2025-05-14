@@ -15,7 +15,8 @@ const testDir = defineBddConfig({
 export default defineConfig({
   use: {
     permissions: ['geolocation'],
-    geolocation: { latitude: 0, longitude: 0 }, // Set to a neutral location if needed
+    //If needed, the geolocation can be set on demand
+    //geolocation: { latitude: 0, longitude: 0 },
     headless: false,
     ignoreHTTPSErrors: true,
     video: 'off',
@@ -26,18 +27,16 @@ export default defineConfig({
   },
   testDir,
   retries: 1,
-  timeout: 60 * 1000,//minutes expressed in milliseconds
+  timeout: 60 * 1000,//seconds expressed in milliseconds
   expect: {timeout:9000},
   reporter: [
+    ['html',{open:'never'}],
     cucumberReporter('html', { outputFile: reportFileName })
   ],
   fullyParallel: false,
   projects: [
     {
-      name: 'chromium',
-      use: {
-        viewport: null
-      }
+      name: 'chromium'
     },
     //todo: add more projects
   ]
