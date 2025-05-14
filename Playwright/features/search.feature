@@ -1,6 +1,8 @@
-Feature: As a user I should be able to search vehicles
+Feature: Vehicle search
+    As a user I should be able to search vehicles
 
-Scenario: Search existing vehicle
+  @Precondition
+  Scenario: Search existing vehicle
     Given User is on the home page
     When user searches for "Tucson"
     Then vehicle filter is not displayed
