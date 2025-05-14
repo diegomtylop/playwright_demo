@@ -18,3 +18,4 @@ cucumber-report
 /update.sh
 results.xml
 **/.DS_Store
+Playwright/.DS_Store

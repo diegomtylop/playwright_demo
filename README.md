@@ -29,7 +29,7 @@ npx playwright test --debug --project 'chromium' -g @smoke
 
 ### Different browsers
 ```bash
-npx playwright test --project webkit
+npx playwright test --project webkit -g @smoke
 ```
 
 ### Emulate devices browsers
@@ -52,7 +52,7 @@ npx playwright test --project 'chromium' -g @smoke --reporter=junit
 
 ### Enable trace
 ```bash
-export PLAYWRIGHT_HTML_OPEN=never
+export PLAYWRIGHT_HTML_OPEN=always
 npx playwright test --project 'chromium' -g @smoke --reporter=html --trace on
 ```
 
