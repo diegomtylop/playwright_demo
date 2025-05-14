@@ -81,17 +81,24 @@ export class HomePage extends BasePage {
 
         await this.vehicleNames.nth(randomIndex).click();
     }
+
     async openCompanyMenu() {
+        await this.companyHeader.hover();
         await this.companyHeader.click();
     }
 
     async navigateToCompanySection(section: string) {
         console.log(`Navigating to section: ${section}`);
         const locator = this.companySections[section];
-        if (locator) {
-            await locator.click();
-        } else {
-            throw new Error(`Section ${section} not found`);
+        const isVisible = await locator.isVisible();
+        if (!isVisible) {
+            console.warn(
+                `Locator for "${section}" not visible, retrying menu open...`
+            );
+            await this.openCompanyMenu();
         }
+
+        await locator.waitFor({ state: "visible" });
+        await locator.click();
     }
 }

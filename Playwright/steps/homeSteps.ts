@@ -43,7 +43,7 @@ When(
     async ({ homePage }, section: string) => {
         console.log(`Navigating to section in HOMESTEPS: ${section}`);
         await homePage.openCompanyMenu();
-        await homePage.navigateToCompanySection(section.trim());
+        await homePage.navigateToCompanySection(section);
     }
 );
 

@@ -10,7 +10,7 @@ Scenario Outline: User navigates through Company menu sections
  | Philosophy         |
  | Sustainability     |
  | Innovation         |
- | Investor Relations |
+ | InvestorRelations  |
  | Metaverse          |
- | Global Distributors|
- | Contact Us         |
+ | GlobalDistributors |
+ | ContactUs          |
