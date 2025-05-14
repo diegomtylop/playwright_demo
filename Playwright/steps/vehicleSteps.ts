@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import{ When, Then } from './fixtures';
 
 //Customize vehicle steps
-When('I am on the customize page por a {string} {string}', async ({vehicleDetailsPage}, vehicleName:string, vehicleType:string) => {
+When('I am on the customize page for a {string} {string}', async ({vehicleDetailsPage}, vehicleName:string, vehicleType:string) => {
     await vehicleDetailsPage.goToDesignUrl( vehicleType, vehicleName);
 });
 
@@ -15,10 +15,7 @@ When('I selects a random wheel option', async ({vehicleDetailsPage}) => {
 });
 
 When('I select the 360 option on the preview', async ({vehicleDetailsPage}) => {
-    await vehicleDetailsPage.img360Preview.click();
-    await expect( vehicleDetailsPage.img360Loaded ).toBeVisible();
-    //TODO: REPLACE BY A CORRECT WAIT
-    await vehicleDetailsPage.page.waitForTimeout(3000);
+    await vehicleDetailsPage.click360Option();
 });
 
 When('I select {string} as seat color', async ({vehicleDetailsPage},colorLabel:string) => {
@@ -31,7 +28,6 @@ When('I click on the Interior features button', async ({vehicleDetailsPage}) => 
 });
 
 ///ASSERTIONS
-
 Then('I expect to be able to see the car from different angles', async ({vehicleDetailsPage}) => {
     await vehicleDetailsPage.validate360Update();
 });
@@ -57,3 +53,6 @@ Then('I expect to see the video for the interior features', async ({vehicleDetai
     await expect(vehicleDetailsPage.playingVideo).toHaveClass("now-playing");
 });
 
+Then('I expect to see the Internal Features section expanded', async ({vehicleDetailsPage},vehicle:string) => {
+    await expect(vehicleDetailsPage.interiorFeaturesDetails).toBeVisible();
+});

@@ -11,6 +11,7 @@ export class VehicleDetailsPage extends BasePage {
     readonly exteriorPreviewImage: Locator;
     readonly img360Preview: Locator;
     readonly img360Loaded: Locator;
+    readonly img360LoadingPercent: Locator;
     readonly wheelOptions:Locator;
 
     //Customize interior
@@ -25,6 +26,7 @@ export class VehicleDetailsPage extends BasePage {
 
     //Playing video
     readonly playingVideo: Locator;
+    readonly interiorFeaturesDetails:Locator;
 
     constructor(page: Page) {
         super(page);
@@ -37,17 +39,19 @@ export class VehicleDetailsPage extends BasePage {
         this.exteriorPreviewImage = page.locator("div.panorama img.panorama");
         this.img360Preview = page.locator(".pano_loading_start");
         this.img360Loaded = page.locator(".panorama.loadingEnd");
+        this.img360LoadingPercent = page.locator(".pano_loading_percent");
         this.wheelOptions = page.locator(".wheel .swiper-slide");
         this.interiorColors = page.locator("#chooseColors .option1 .swiper-wrapper .swiper-slide button");
         this.interiorPreviewImage = page.locator(".pnlm-preview-img");
 
         //Seats preview
-        this.seatsPreview = page.getByAltText("interior color").filter({visible:true}).first();
+        this.seatsPreview = page.locator('//img[contains(@alt,"interior") and contains(@alt,"color")][not(@class)]').filter({visible:true}).first();
 
         //Internal features (Xpath)
         this.expandInternalFeaturesCTA = page.locator('//button[@data-track-description="Interior Features"]')
 
         this.playingVideo = page.locator(".section-media__video video ").filter({visible:true}).first();
+        this.interiorFeaturesDetails = page.locator('//button[@data-track-description="Interior Features"]/following-sibling::div');
     }
 
     async goToDesignUrl(vehicleType: string, vehicleName: string) {
@@ -93,6 +97,15 @@ export class VehicleDetailsPage extends BasePage {
 
     async selectRandomWheel() {
         await (await this.selectRandomElement( this.wheelOptions )).click();
+    }
+
+    async click360Option() {
+        await this.img360Preview.click();
+        await expect( this.img360Loaded ).toBeVisible();
+        await this.page.waitForLoadState('domcontentloaded');
+        await expect(this.img360LoadingPercent ).toBeHidden();
+        await expect(this.exteriorPreviewImage ).toBeVisible();
+        console.log("360 viewer loaded");
     }
 
     /**

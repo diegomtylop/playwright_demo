@@ -4,7 +4,7 @@ Feature: Vehicle customization
     So that I can see different options
 
   Scenario Outline: Customize suvs and <vehicleName>
-    Given I am on the customize page por a "<vehicleName>" "<vehicleType>"
+    Given I am on the customize page for a "<vehicleName>" "<vehicleType>"
     When I select "Interior" tab
     Then I expect that the interior preview image changes according to the selected color
     When I select "Exterior" tab
@@ -16,8 +16,7 @@ Feature: Vehicle customization
     Then I expect the seats image to be updated
     # Interior features vide
     When I click on the Interior features button
-    #REPLACE TO MAKE IT A
-    #Then I expect to see the video for the interior features
+    Then I expect to see the Internal Features section expanded
     Examples:
     | vehicleName | vehicleType | seatColor             |
     | tucson-2023 | suv         | Black monotone leather|
@@ -25,11 +24,11 @@ Feature: Vehicle customization
     | elantra-2023| cars        | Sage Green            |
 
   Scenario: Customize Santa Fe
-    Given I am on the customize page por a "santafe-2023" "suv"
+    Given I am on the customize page for a "santafe-2023" "suv"
     When I select "Interior" tab
     Then I expect that the interior preview image changes according to the selected color
     When I select "Exterior" tab
     When I selects a random wheel option
     When I select the 360 option on the preview
     Then I expect to be able to see the car from different angles
-    #Seats are not customizable for Santa fe
+    # Seats are not customizable for Santa fe
