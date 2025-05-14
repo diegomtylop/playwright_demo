@@ -19,7 +19,6 @@ When('user selects a random vehicle from the results',async ({homePage})  => {
 
 });
 
-
 Then(/^vehicle filter is( not)? displayed$/, async ({homePage}, expectedVisibility:string) => {
     if( expectedVisibility === null){//Expect to be visible
         expect( homePage.allVehiclesTabFilter ).toBeVisible();
@@ -29,6 +28,6 @@ Then(/^vehicle filter is( not)? displayed$/, async ({homePage}, expectedVisibili
 });
 
 Then('vehicle results should not be empty', async ({homePage}) => {
+    //Custom wait
     await expect.poll( async()=>{ return await homePage.vehicleResults.count() }).toBeGreaterThan(0);
-    //await expect( homePage.vehicleResults ).not.toBeEmpty();
 });
