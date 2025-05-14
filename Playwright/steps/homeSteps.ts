@@ -1,7 +1,5 @@
 import { expect } from "@playwright/test";
 import { Given, When, Then } from "./fixtures";
-import { ScenarioData } from "state/scenarioData";
-import { HomePage } from "@pages/homePage";
 
 Given("User is on the home page", async ({ homePage }) => {
     await homePage.navigate();
@@ -16,7 +14,7 @@ When("user clears search term", async ({ homePage }) => {
 });
 
 When("user selects a random vehicle from the results", async ({ homePage }) => {
-    homePage.selectRandomResult();
+    await homePage.selectRandomResult();
 });
 
 Then(
@@ -32,12 +30,12 @@ Then(
 );
 
 Then("vehicle results should not be empty", async ({ homePage }) => {
+    //Custom wait
     await expect
         .poll(async () => {
             return await homePage.vehicleResults.count();
         })
         .toBeGreaterThan(0);
-    //await expect( homePage.vehicleResults ).not.toBeEmpty();
 });
 
 When(
