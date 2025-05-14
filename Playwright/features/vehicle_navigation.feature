@@ -1,4 +1,6 @@
-Feature: As a user I should be able to see the details of a searched vehicle
+Feature: Vehicle details from Search
+    As a customer
+    I should be able to see the details of a searched vehicle
 
 Scenario Outline: Navigate to vehicle details page
     Given User is on the home page

@@ -8,3 +8,11 @@ npx playwright install
 npx bddgen
 npx playwright test ./features/search.feature
 ```
+
+# Running the tests using the command line
+
+# Different browsers
+
+# Additional reporters
+
+# Number of workers
