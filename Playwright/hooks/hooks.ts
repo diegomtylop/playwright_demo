@@ -8,14 +8,14 @@ const { BeforeScenario, AfterScenario } = createBdd(test);
  * The logic on this method will be called before running the steps
  * of any scenario with the corresponding tag
  */
-BeforeScenario({ tags: '@Precondition' }, async function () {
-  console.log('Running @BEFORE hoook');
+BeforeScenario({ tags: '@precondition' }, async function () {
+  console.log('Running @BEFORE hook');
 });
 
 /**
  * The logic on this method will be executed after running all the steps
  * of any scenario with the corresponding tag, even if the scenario failed
  */
-AfterScenario({ tags: '@Precondition' }, async function(){
+AfterScenario({ tags: '@precondition' }, async function(){
   console.log("running @AFTER hook");
 });
