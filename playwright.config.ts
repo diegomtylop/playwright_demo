@@ -3,7 +3,7 @@ import { defineBddConfig, cucumberReporter } from 'playwright-bdd';
 import "dotenv/config"
 
 const now = new Date();
-const date = now.toISOString().split('T')[0]; // Date part (YYYY-MM-DD)
+const date = now.toISOString().split('T')[0];
 const reportFileName = `cucumber-report/report_${date}.html`;
 
 const testDir = defineBddConfig({
@@ -27,7 +27,7 @@ export default defineConfig({
   },
   testDir,
   retries: 1,
-  timeout: 60 * 1000,//seconds expressed in milliseconds
+  timeout: 60 * 1000,//Max timeout for any test
   expect: {timeout:9000},
   reporter: [
     cucumberReporter('html', { outputFile: reportFileName })
