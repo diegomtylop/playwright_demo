@@ -1,6 +1,11 @@
 # playwright_demo
 Project showcasing the main features of playwright
 
+# Architecture
+
+![architecture](architecture.jpg)
+
+
 # Installation
 ```bash
 #Install dependencies
@@ -24,7 +29,7 @@ npx playwright test -g @smoke --project chromium
 
 ### Running tests in debug mode
 ```bash
-npx playwright test --debug --project 'chromium' -g @smoke
+npx playwright test --debug --project 'chromium' -g @customize
 ```
 
 ### Different browsers
