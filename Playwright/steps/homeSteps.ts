@@ -1,10 +1,12 @@
 import { expect } from "@playwright/test";
 import { Given, When, Then } from "./fixtures";
 
+//Preconditions
 Given("User is on the home page", async ({ homePage }) => {
     await homePage.navigate();
 });
 
+//Actions
 When("user searches for {string}", async ({ homePage }, term: string) => {
     await homePage.searchVehicle(term);
 });
@@ -17,6 +19,13 @@ When("user selects a random vehicle from the results", async ({ homePage }) => {
     await homePage.selectRandomResult();
 });
 
+When("the user navigates to the {string} page", async ({ homePage }, section: string) => {
+    console.log(`Navigating to section in HOMESTEPS: ${section}`);
+    await homePage.openCompanyMenu();
+    await homePage.navigateToCompanySection(section);
+});
+
+//Assertions
 Then(
     /^vehicle filter is( not)? displayed$/,
     async ({ homePage }, expectedVisibility: string) => {
@@ -37,15 +46,6 @@ Then("vehicle results should not be empty", async ({ homePage }) => {
         })
         .toBeGreaterThan(0);
 });
-
-When(
-    "the user navigates to the {string} page",
-    async ({ homePage }, section: string) => {
-        console.log(`Navigating to section in HOMESTEPS: ${section}`);
-        await homePage.openCompanyMenu();
-        await homePage.navigateToCompanySection(section);
-    }
-);
 
 Then(
     "the page should load correctly and display the expected content",

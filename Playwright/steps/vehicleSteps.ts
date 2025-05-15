@@ -1,11 +1,12 @@
 import { expect } from '@playwright/test';
-import{ When, Then } from './fixtures';
+import{ Given,When, Then } from './fixtures';
 
 //Customize vehicle steps
-When('I am on the customize page for a {string} {string}', async ({vehicleDetailsPage}, vehicleName:string, vehicleType:string) => {
+Given('I am on the customize page for a {string} {string}', async ({vehicleDetailsPage}, vehicleName:string, vehicleType:string) => {
     await vehicleDetailsPage.goToDesignUrl( vehicleType, vehicleName);
 });
 
+//Actions
 When('I select {string} tab', async ({vehicleDetailsPage}, tabLabel:string) => {
     await vehicleDetailsPage.selectDesignTab(tabLabel);
 });
@@ -27,7 +28,7 @@ When('I click on the Interior features button', async ({vehicleDetailsPage}) => 
     await vehicleDetailsPage.expandInternalFeaturesCTA.click();
 });
 
-///ASSERTIONS
+//Assertions
 Then('I expect to be able to see the car from different angles', async ({vehicleDetailsPage}) => {
     await vehicleDetailsPage.validate360Update();
 });
